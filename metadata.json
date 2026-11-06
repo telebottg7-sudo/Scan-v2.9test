@@ -3,5 +3,8 @@
   "description": "A specialized QR code generation and verification platform for pharmaceutical products, ensuring authenticity through a closed-loop verification process.",
   "requestFramePermissions": [
     "camera"
+  ],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
 }

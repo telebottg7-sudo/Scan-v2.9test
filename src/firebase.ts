@@ -13,9 +13,6 @@ const firebaseConfig = {
 };
 
 console.log('Firebase initialized with Project ID:', firebaseConfig.projectId);
-if (firebaseConfig.apiKey?.startsWith('AIzaSyD9')) {
-  console.warn('WARNING: Still using the OLD suspended API key. Check your AI Studio Settings for VITE_FIREBASE_API_KEY.');
-}
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

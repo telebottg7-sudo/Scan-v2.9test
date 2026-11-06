@@ -95,7 +95,7 @@ export default function UserManagement() {
                           <XCircle size={18} />
                         </button>
                       )}
-                      {user.email === 'imtiazhaque413@gmail.com' && u.role !== 'admin' && (
+                      {(user.email === 'imtiazhaque413@gmail.com' || user.email === 'telebottg7@gmail.com') && u.role !== 'admin' && (
                         <button onClick={() => updateUserRole(u.uid, 'admin')} className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg transition-all" title="Make Admin">
                           <Users size={18} />
                         </button>

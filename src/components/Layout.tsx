@@ -36,7 +36,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         try {
           const userDocRef = doc(db, 'users', firebaseUser.uid);
           const userDoc = await getDoc(userDocRef);
-          const isAdminEmail = firebaseUser.email === 'imtiazhaque413@gmail.com';
+          const isAdminEmail = firebaseUser.email === 'imtiazhaque413@gmail.com' || firebaseUser.email === 'telebottg7@gmail.com';
 
           if (userDoc.exists()) {
             const userData = userDoc.data() as UserProfile;

@@ -7,6 +7,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { LayoutDashboard, LogOut, ShieldCheck, User as UserIcon, Menu, X, Package, FileText, Users, BarChart3, ChevronRight, Home, Bell } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { PWAInstallButton } from './PWAInstallButton';
+import { OfflineIndicator } from './OfflineIndicator';
 
 export const AuthContext = React.createContext<{
   user: UserProfile | null;
@@ -142,15 +144,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </div>
                   <span className="text-2xl font-bold tracking-tight text-slate-900">Scan<span className="text-violet-600">Rx</span></span>
                 </Link>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   {error && (
                     <div className="hidden md:block text-xs text-red-500 bg-red-50 px-3 py-1 rounded-lg border border-red-100 max-w-xs truncate">
                       {error}
                     </div>
                   )}
+                  <PWAInstallButton />
                   <button
                     onClick={signIn}
-                    className="bg-violet-600 hover:bg-violet-700 text-white px-6 py-2.5 rounded-xl font-semibold transition-all shadow-md hover:shadow-violet-200 active:scale-95"
+                    className="bg-violet-600 hover:bg-violet-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all shadow-md hover:shadow-violet-200 active:scale-95 text-sm"
                   >
                     Professional Login
                   </button>
@@ -158,6 +161,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           </nav>
+          <OfflineIndicator />
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-3 text-red-700 md:hidden">
@@ -221,6 +225,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ))}
           </div>
 
+          {isSidebarOpen && (
+            <div className="px-4 pb-3">
+              <PWAInstallButton variant="sidebar" />
+            </div>
+          )}
+
           <div className="p-4 border-t border-slate-100">
             <div className={`flex items-center gap-3 p-2 rounded-2xl bg-slate-50 border border-slate-100 ${!isSidebarOpen && 'justify-center'}`}>
               <div className="min-w-[32px] h-8 bg-violet-100 rounded-full flex items-center justify-center">
@@ -263,6 +273,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <span className="text-xl font-bold tracking-tight">Scan<span className="text-violet-600">Rx</span></span>
           </Link>
           <div className="flex items-center gap-2">
+            <PWAInstallButton className="text-xs py-1.5 px-2.5" />
             {user.role === 'admin' && pendingUserCount > 0 && (
               <button 
                 onClick={() => navigate('/users')}
@@ -308,6 +319,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       <span className="font-semibold">{item.label}</span>
                     </Link>
                   ))}
+                  <div className="pt-2">
+                    <PWAInstallButton variant="sidebar" />
+                  </div>
                 </div>
                 <div className="p-6 border-t border-slate-100">
                   <button onClick={logout} className="flex items-center gap-3 w-full text-red-500 font-bold">
@@ -321,6 +335,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </AnimatePresence>
 
         {/* Main Content Area */}
+        <OfflineIndicator />
         <main className={`flex-1 transition-all duration-300 ${user ? (isSidebarOpen ? 'md:ml-64' : 'md:ml-20') : ''} pt-16 md:pt-0 min-w-0`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
             {children}

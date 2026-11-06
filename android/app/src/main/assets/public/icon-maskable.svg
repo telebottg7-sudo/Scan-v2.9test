@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGradMask" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+    <linearGradient id="shieldGradMask" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f1f5f9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Full-bleed background for maskable cropping -->
+  <rect width="512" height="512" fill="url(#bgGradMask)" />
+
+  <!-- Safe-zone scaled icon graphic (centered within safe circle) -->
+  <g transform="translate(64, 64) scale(0.75)">
+    <!-- Shield Shape -->
+    <path d="M 256 100 
+             C 320 100 376 120 384 140 
+             C 384 260 336 348 256 412 
+             C 176 348 128 260 128 140 
+             C 136 120 192 100 256 100 Z" 
+          fill="url(#shieldGradMask)" />
+
+    <!-- QR grid accents inside shield -->
+    <rect x="180" y="168" width="32" height="32" rx="6" fill="#7c3aed" />
+    <rect x="300" y="168" width="32" height="32" rx="6" fill="#7c3aed" />
+    <rect x="180" y="288" width="32" height="32" rx="6" fill="#7c3aed" />
+    
+    <!-- Checkmark -->
+    <path d="M 220 260 L 250 292 L 320 216" 
+          fill="none" 
+          stroke="#10b981" 
+          stroke-width="26" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+  </g>
+</svg>
